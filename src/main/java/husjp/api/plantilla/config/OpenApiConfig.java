@@ -1,12 +1,13 @@
 package husjp.api.plantilla.config;
 
-import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
-import io.swagger.v3.oas.annotations.security.SecurityScheme;
-import io.swagger.v3.oas.models.info.Info;
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
+import io.swagger.v3.oas.models.info.Info;
 
 //Permite que pondamos iniciar sesión con el token en swagger
 @SecurityScheme(
@@ -25,6 +26,16 @@ public class OpenApiConfig {
                 .group("ejemplo")
                 .addOpenApiCustomizer(openApi -> openApi.info(new Info().title("InnProduc API").version(appVersion)
                         .description("Ejemplo de como se debe documentar el microservicio")))
+                .pathsToMatch(paths)
+                .build();
+    }
+    @Bean
+    public GroupedOpenApi AreaServicio(@Value("2.3.0") String appVersion){
+        String [] paths = {"/AreaServicio/**"};
+        return GroupedOpenApi.builder()
+                .group("AreaServicio")
+                .addOpenApiCustomizer(openApi -> openApi.info(new Info().title("Area Servicio").version(appVersion)
+                        .description("metodos que obtienen las Areas de Servicio Hospital San Jose ")))
                 .pathsToMatch(paths)
                 .build();
     }

@@ -1,6 +1,5 @@
 package husjp.api.plantilla.config;
 
-import husjp.api.plantilla.service.impl.UserDetailServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -16,6 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import husjp.api.plantilla.service.impl.UserDetailServiceImpl;
+
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
@@ -30,6 +31,7 @@ public class SecurityConfig {
                         authorizeRequests.requestMatchers(AUTH_WHITLIST).permitAll();
                         //ejemplo para proteger un endpoint
                         authorizeRequests.requestMatchers(HttpMethod.GET, "ejemplo/prueba").hasAnyRole("ADMIN");
+                        authorizeRequests.requestMatchers(HttpMethod.GET,"AreaServicio").hasAnyRole("ADMIN","COORD");
                         authorizeRequests.anyRequest().authenticated();
                     }
                 )
