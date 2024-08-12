@@ -39,4 +39,15 @@ public class OpenApiConfig {
                 .pathsToMatch(paths)
                 .build();
     }
+    
+    @Bean
+    public GroupedOpenApi ProcesosOpenApi(@Value("2.3.0") String appVersion){
+        String [] paths = {"/procesos/**"};
+        return GroupedOpenApi.builder()
+                .group("Procesos")
+                .addOpenApiCustomizer(openApi -> openApi.info(new Info().title("procesos API").version(appVersion)
+                        .description("procesos de Areas de Servicio del Hospital San jose   ")))
+                .pathsToMatch(paths)
+                .build();
+    }
 }

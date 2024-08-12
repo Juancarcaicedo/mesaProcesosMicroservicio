@@ -14,7 +14,7 @@ import lombok.Data;
 @Table(name = "AreaServicio")
 public class AreaServicio {
     @Id
-    private Integer IdArea;
+    private Integer idarea;
     private String Nombre;
     private String Tipo;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "areaServicioUsuario")

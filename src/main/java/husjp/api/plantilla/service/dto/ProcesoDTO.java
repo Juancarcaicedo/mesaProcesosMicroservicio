@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AreaServicioDTO {
-    private Integer idarea;
-    private String Nombre;
-    private String Tipo;
+public class ProcesoDTO {
+	   private Integer idproceso;
+	    private String Nombre;
+	    private String descripcion;
+	    private Integer idarea;
 }

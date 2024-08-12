@@ -29,7 +29,7 @@ public class Usuario  {
     )
     private Set<Rol> roles;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdArea")
+    @JoinColumn(name = "idarea")
     private AreaServicio areaServicioUsuario;
 
 }
