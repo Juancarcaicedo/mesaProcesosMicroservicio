@@ -50,4 +50,15 @@ public class OpenApiConfig {
                 .pathsToMatch(paths)
                 .build();
     }
+    
+    @Bean
+    public GroupedOpenApi SubProcesosOpenApi(@Value("2.3.0") String appVersion){
+      String [] paths = {"/subprocesos/**"};
+        return GroupedOpenApi.builder()
+                .group("subProcesos")
+               .addOpenApiCustomizer(openApi -> openApi.info(new Info().title("procesos API").version(appVersion)
+                        .description("subprocesos de  Procesos de Areas de Servicio del Hospital San jose   ")))
+               .pathsToMatch(paths)
+                .build();
+    }
 }

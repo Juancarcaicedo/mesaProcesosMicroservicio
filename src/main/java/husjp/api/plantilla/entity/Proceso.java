@@ -20,8 +20,8 @@ public class Proceso {
     private String Nombre;
     private String descripcion;
 
-   /// @OneToMany(fetch = FetchType.LAZY, mappedBy = "proceso")
-    //private List<SubProceso> subprocesos;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "proceso")
+    private List<SubProceso> subprocesos;
 
      @ManyToOne
      @JoinColumn(name = "idArea", nullable = false)
