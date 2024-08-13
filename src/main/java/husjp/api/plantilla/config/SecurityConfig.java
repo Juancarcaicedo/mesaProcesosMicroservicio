@@ -50,6 +50,7 @@ public class SecurityConfig {
                         authorizeRequests.requestMatchers(HttpMethod.PUT,"usuarioprocesos/{id}").hasAnyRole("ADMIN","COORD");
                         authorizeRequests.requestMatchers(HttpMethod.PUT,"usuarioprocesos/estado/{id}").hasAnyRole("ADMIN","COORD");
                         authorizeRequests.requestMatchers(HttpMethod.DELETE,"usuarioprocesos/{id}").hasAnyRole("ADMIN","COORD");
+                        authorizeRequests.requestMatchers(HttpMethod.DELETE,"usuarioprocesos/transferir").hasAnyRole("ADMIN","COORD");
                         
                         authorizeRequests.anyRequest().authenticated();
                     }

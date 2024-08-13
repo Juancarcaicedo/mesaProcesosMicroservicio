@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,7 +54,7 @@ public class UsuarioProcesosController {
 
 	    @SecurityRequirement(name = "Bearer Authentication")
 	    @PutMapping("/estado/{proceso}")
-	    public UsuarioProcesoDTO actualizarestado(@PathVariable (name = "proceso") Integer proceso, String enlace ) {
+	    public UsuarioProcesoDTO actualizarestado(@PathVariable (name = "proceso") Integer proceso, @RequestParam(name = "enlace") String enlace) {
 	        return usuarioProcesoService.actualizarUsuarioprocesoEstado(proceso,enlace);
 	    }
 
@@ -63,8 +65,18 @@ public class UsuarioProcesosController {
 	    }
 	    @SecurityRequirement(name = "Bearer Authentication")
 	    @GetMapping("/area/{idArea}")
-	    public List<UsuarioProcesoDTO> getUsuarioProcesosByArea(@PathVariable (name="idAR") Integer idArea) {
+	    public List<UsuarioProcesoDTO> getUsuarioProcesosByArea(@PathVariable (name="idArea") Integer idArea) {
 	        return usuarioProcesoService.obtenerUsuarioProcesoArea(idArea);
 	    }
+	    
+	    @SecurityRequirement(name = "Bearer Authentication")
+	    @PutMapping("/transferir")
+	    public UsuarioProcesoDTO transferirSubproceso(
+	            @RequestParam (name = "idUsuarioProceso")  Integer idUsuarioProceso,
+	            @RequestParam (name= "nuevoUsuarioId") String nuevoUsuarioId) {
+	        return usuarioProcesoService.transferirSubprocesoAUsuario(idUsuarioProceso, nuevoUsuarioId);
+	    }
+	    
+	    
 
 }

@@ -120,7 +120,7 @@ public class IUsuarioPrcesoServiceImpl  implements IUsuarioProcesoService   {
     }
 
 
-    @Scheduled(fixedRate = 3600000)
+    @Scheduled(fixedRate = 86400000)
    public void actualizarEstadosAutomáticamente() {
         List<UsuarioProceso> procesos = usuarioProcesoRepository.findAll();
         LocalDateTime hoy = LocalDateTime.now();
@@ -158,5 +158,27 @@ public class IUsuarioPrcesoServiceImpl  implements IUsuarioProcesoService   {
                 })
                 .collect(Collectors.toList());
     }
- 
+
+    @Override
+    public UsuarioProcesoDTO transferirSubprocesoAUsuario(Integer idUsuarioProceso, String nuevoUsuarioId) {
+        Optional<UsuarioProceso> usuarioProcesoOpt = usuarioProcesoRepository.findById(idUsuarioProceso);
+        if (!usuarioProcesoOpt.isPresent()) {
+            throw new IllegalArgumentException("UsuarioProceso no encontrado.");
+        }
+        Optional<Usuario> nuevoUsuarioOpt = usuarioRespository.findById(nuevoUsuarioId);
+        if (!nuevoUsuarioOpt.isPresent()) {
+            throw new IllegalArgumentException("Usuario con ID " + nuevoUsuarioId + " no encontrado.");
+        }
+
+        // Actualizar el UsuarioProceso con el nuevo usuario
+        UsuarioProceso usuarioProceso = usuarioProcesoOpt.get();
+        usuarioProceso.setUsuario(nuevoUsuarioOpt.get());
+        
+        // Guardar el cambio en la base de datos
+        UsuarioProceso usuarioProcesoActualizado = usuarioProcesoRepository.save(usuarioProceso);
+
+        // Convertir la entidad actualizada a DTO y devolverla
+        return modelMapper.map(usuarioProcesoActualizado, UsuarioProcesoDTO.class);
+    }
+
 }

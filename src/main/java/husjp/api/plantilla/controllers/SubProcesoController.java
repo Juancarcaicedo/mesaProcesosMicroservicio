@@ -40,7 +40,7 @@ public class SubProcesoController {
     }
     @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping("/{id}")
-    public SubProcesoDTO actualizarSubProceso(@PathVariable Integer id, @RequestBody SubProcesoDTO subProcesoDTO) {
+    public SubProcesoDTO actualizarSubProceso(@PathVariable (name = "id" ) Integer  id, @RequestBody SubProcesoDTO subProcesoDTO) {
         return subProcesoService.actualizarSubproceso(id, subProcesoDTO);
     }
    
