@@ -21,6 +21,7 @@ public class Usuario  {
     private String documento;
     private String password;
     private Boolean estado;
+    private String nombrecompleto;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "usuarios_roles",

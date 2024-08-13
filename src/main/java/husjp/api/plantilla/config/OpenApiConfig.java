@@ -61,4 +61,15 @@ public class OpenApiConfig {
                .pathsToMatch(paths)
                 .build();
     }
+    
+    @Bean
+    public GroupedOpenApi UsuarioProceso(@Value("2.3.0") String appVersion){
+        String [] paths = {"/usuarioprocesos/**"};
+        return GroupedOpenApi.builder()
+                .group("usuarioprocesos")
+                .addOpenApiCustomizer(openApi -> openApi.info(new Info().title("Servicios API").version(appVersion)
+                        .description("Usuario procesos")))
+                .pathsToMatch(paths)
+                .build();
+    }
 }

@@ -42,6 +42,15 @@ public class SecurityConfig {
                         authorizeRequests.requestMatchers(HttpMethod.POST,"subprocesos").hasAnyRole("ADMIN","COORD");
                         authorizeRequests.requestMatchers(HttpMethod.PUT,"subprocesos/{id}").hasAnyRole("ADMIN","COORD");
                         authorizeRequests.requestMatchers(HttpMethod.GET,"subprocesos/{id}").hasAnyRole("ADMIN","COORD");
+                        //UsuariosProcesos;
+                        authorizeRequests.requestMatchers(HttpMethod.GET,"usuarioprocesos").hasAnyRole("ADMIN","COORD");
+                        authorizeRequests.requestMatchers(HttpMethod.GET,"usuarioprocesos/{usuarioid}").hasAnyRole("ADMIN","COORD");
+                        authorizeRequests.requestMatchers(HttpMethod.GET,"usuarioprocesos/area/{idArea}").hasAnyRole("ADMIN","COORD");
+                        authorizeRequests.requestMatchers(HttpMethod.POST,"usuarioprocesos").hasAnyRole("ADMIN","COORD");
+                        authorizeRequests.requestMatchers(HttpMethod.PUT,"usuarioprocesos/{id}").hasAnyRole("ADMIN","COORD");
+                        authorizeRequests.requestMatchers(HttpMethod.PUT,"usuarioprocesos/estado/{id}").hasAnyRole("ADMIN","COORD");
+                        authorizeRequests.requestMatchers(HttpMethod.DELETE,"usuarioprocesos/{id}").hasAnyRole("ADMIN","COORD");
+                        
                         authorizeRequests.anyRequest().authenticated();
                     }
                 )

@@ -18,8 +18,8 @@ public class SubProceso {
     @JoinColumn(name = "idproceso")
     private Proceso proceso;
 
-    //@OneToMany(mappedBy = "subProceso")
-    //private List<UsuarioProceso> usuarioProcesos;
+    @OneToMany(mappedBy = "subProceso")
+    private List<UsuarioProceso> usuarioProcesos;
 
 
 }
